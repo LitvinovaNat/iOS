@@ -182,17 +182,6 @@ class GameViewController: UIViewController {
     
     func ourDeath() {
         
-        if enemies[0][2].frame.origin.y + enemies[0][2].frame.height > shipImageView.frame.origin.y {
-          aliveEnemies = 15
-          score.text = String(currentScore)
-          score.isHidden = false
-          scoreLabel.isHidden = false
-          gameOver.isHidden = false
-          self.endButton.isHidden = false
-          self.endButton.isEnabled = true
-          time?.invalidate()
-        }
-        
         for (number, item) in enemyBullets.enumerated() {
             item.frame.origin.y += 5
             if item.frame.origin.y > item.frame.height + view.frame.height {
@@ -212,6 +201,8 @@ class GameViewController: UIViewController {
                       gameOver.isHidden = false
                       self.endButton.isHidden = false
                       self.endButton.isEnabled = true
+                      self.buttonLeft.isHidden = true
+                      self.buttonRight.isHidden = true
                       time?.invalidate()
                     }
                     
@@ -220,17 +211,6 @@ class GameViewController: UIViewController {
         }
         
     }
-    
-    /*func die() {
-        aliveEnemies = 15
-        score.text = String(currentScore)
-        score.isHidden = false
-        scoreLabel.isHidden = false
-        gameOver.isHidden = false
-        self.endButton.isHidden = false
-        self.endButton.isEnabled = true
-        time?.invalidate()
-    }*/
     
     private func Shoot(){
         if playerAttack > gameState.fireRate {
@@ -270,6 +250,8 @@ class GameViewController: UIViewController {
                                     gameOver.isHidden = false
                                     self.endButton.isHidden = false
                                     self.endButton.isEnabled = true
+                                    self.buttonLeft.isHidden = true
+                                    self.buttonRight.isHidden = true
                                     
                                     
                                     break outer

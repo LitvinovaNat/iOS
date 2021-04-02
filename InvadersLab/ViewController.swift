@@ -21,8 +21,8 @@ class ViewController: UIViewController {
 
   }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         self.scoreLable.text = String(score)
     }
 
