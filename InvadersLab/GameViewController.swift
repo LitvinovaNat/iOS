@@ -19,23 +19,23 @@ class GameViewController: UIViewController {
     
   private let shipImage = UIImage(named: "ship")
   private var shipImageView = UIImageView()
-  var playerAttack = 40
-  var playerBullets = [UIImageView]()
+  private var playerAttack = 40
+  private var playerBullets = [UIImageView]()
     
 
     
-  var enemies = [[UIImageView]]()
-  var aliveEnemies = 15
-  var enemyXDir :CGFloat = -1
-  var enemyYDir :CGFloat = 0
-  var enemyAttack = 50
-  var enemyBullets = [UIImageView]()
+  private var enemies = [[UIImageView]]()
+  private var aliveEnemies = 15
+  private var enemyXDir :CGFloat = -1
+  private var enemyYDir :CGFloat = 0
+  private var enemyAttack = 50
+  private var enemyBullets = [UIImageView]()
     
-  var time: Timer?
+  private var time: Timer?
     
   var gameState = GameState()
     
-  var currentScore = 0
+  private var currentScore = 0
     
   override func viewDidLoad() {
      super.viewDidLoad()
@@ -53,7 +53,7 @@ class GameViewController: UIViewController {
       buttonLeft.setImage(buttonLeftImage, for: .normal)
       buttonRight.setImage(buttonRightImage, for: .normal)
       createShip()
-      setUpEnemies()
+      posEnemies()
       buttonTargets()
     
       time = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(draw), userInfo: nil, repeats: true)
@@ -78,7 +78,7 @@ class GameViewController: UIViewController {
         
     }
     
-    func setUpEnemies() {
+    func posEnemies() {
         for i in 1...5 {
             var enemyX = [UIImageView]()
             for j in 1...3{
