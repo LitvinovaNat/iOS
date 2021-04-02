@@ -175,15 +175,22 @@ class GameViewController: UIViewController {
         Shoot()
         
         
-        checkForDeath()
+        ourDeath()
         
         
     }
     
-    func checkForDeath() {
+    func ourDeath() {
         
         if enemies[0][2].frame.origin.y + enemies[0][2].frame.height > shipImageView.frame.origin.y {
-            die()
+          aliveEnemies = 15
+          score.text = String(currentScore)
+          score.isHidden = false
+          scoreLabel.isHidden = false
+          gameOver.isHidden = false
+          self.endButton.isHidden = false
+          self.endButton.isEnabled = true
+          time?.invalidate()
         }
         
         for (number, item) in enemyBullets.enumerated() {
@@ -198,7 +205,14 @@ class GameViewController: UIViewController {
                     enemyBullets.remove(at: number)
                     gameState.health-=1
                     if (gameState.health==0) {
-                        die()
+                      aliveEnemies = 15
+                      score.text = String(currentScore)
+                      score.isHidden = false
+                      scoreLabel.isHidden = false
+                      gameOver.isHidden = false
+                      self.endButton.isHidden = false
+                      self.endButton.isEnabled = true
+                      time?.invalidate()
                     }
                     
                 }
@@ -207,7 +221,7 @@ class GameViewController: UIViewController {
         
     }
     
-    func die() {
+    /*func die() {
         aliveEnemies = 15
         score.text = String(currentScore)
         score.isHidden = false
@@ -216,7 +230,7 @@ class GameViewController: UIViewController {
         self.endButton.isHidden = false
         self.endButton.isEnabled = true
         time?.invalidate()
-    }
+    }*/
     
     private func Shoot(){
         if playerAttack > gameState.fireRate {
