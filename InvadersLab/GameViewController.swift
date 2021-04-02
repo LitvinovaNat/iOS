@@ -95,13 +95,13 @@ class GameViewController: UIViewController {
     func drawEnemies() {
         enemiesAttack()
         
-        for i in 0...4 {
-            for j in 0...2 {
+        for i in 0..<5 {
+            for j in 0..<3 {
                 enemies[i][j].frame.origin.x += enemyXDir
             }
         }
         
-        for i in 0...4{
+        for i in 0..<5{
             if enemies[i][0].frame.origin.x + enemies[i][0].frame.width >= view.frame.width {
                 enemyXDir = -1
             }
@@ -110,7 +110,7 @@ class GameViewController: UIViewController {
             }
         }
         
-        for i in 0...4 {
+        for i in 0..<5 {
             for j in 0...2 {
                 enemies[i][j].frame.origin.y += enemyYDir
                 enemies[i][j].transform = CGAffineTransform(scaleX: enemyXDir, y: 1)
@@ -124,8 +124,8 @@ class GameViewController: UIViewController {
         enemyAttack += 1
         
         if enemyAttack >= 60 {
-            let randx = Int.random(in: 0...4)
-            let randy = Int.random(in: 0...2)
+            let randx = Int.random(in: 0..<5)
+            let randy = Int.random(in: 0..<3)
             let selectedEnemy = enemies[randx][randy]
             if !selectedEnemy.isHidden {
                 let myView = CGRect(x: selectedEnemy.frame.origin.x + selectedEnemy.frame.width * 0.45, y: selectedEnemy.frame.origin.y + selectedEnemy.frame.height * 0.3, width: selectedEnemy.frame.width * 0.5, height: selectedEnemy.frame.height * 0.5)
@@ -231,8 +231,8 @@ class GameViewController: UIViewController {
                 playerBullets.remove(at: number)
             } else {
                 if enemyPos >= item.frame.origin.y {
-                    inner : for i in 0...4 {
-                        for j in 0...2 {
+                    inner : for i in 0..<5 {
+                        for j in 0..<3 {
                             if (item.frame.intersects(enemies[i][j].frame) && enemies[i][j].isHidden==false) {
                                 playerBullets[number].removeFromSuperview()
                                 playerBullets.remove(at: number)
